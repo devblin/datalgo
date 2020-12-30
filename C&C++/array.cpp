@@ -35,7 +35,7 @@ int main()
 
 	------------------
 	*/
-	cout << "size of A: " << sizeof(A) << "\nsize of B: " << sizeof(B) << '\n';
+	cout << "Size of A: " << sizeof(A) << "\nSize of B: " << sizeof(B) << '\n';
 	cout << A[0] << " " << A[1] << "\n";
 	int i;
 	for (i = 0; i < 3; i++)
@@ -54,6 +54,21 @@ int main()
 	{
 		cout << B[i++] << " ";
 	} while (i < 3);
+	cout << "\n";
+	for (auto x : B)
+	{
+		cout << x << " ";
+	}
+	cout << "\n";
+
+	int n;
+	cout << "Enter size of array: ";
+	cin >> n;
+	int C[n];
+	for (auto x : C)
+	{
+		cout << x << " ";
+	}
 	cout << "\n";
 	return 0;
 }
