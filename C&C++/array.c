@@ -29,26 +29,40 @@ int main()
 
 	------------------------
 	*/
-	printf("size of A: %ld\n", sizeof(A));
-	printf("size of B: %ld\n", sizeof(B));
+	printf("Size of A: %ld\n", sizeof(A));
+	printf("Size of B: %ld\n", sizeof(B));
 	printf("%d %d\n", A[0], A[1]);
+
 	int i;
 	for (i = 0; i < 3; i++)
 	{
 		printf("%d ", B[i]);
 	}
 	printf("\n");
+
 	i = 0;
 	while (i < 3)
 	{
 		printf("%d ", B[i++]);
 	}
 	printf("\n");
+
 	i = 0;
 	do
 	{
 		printf("%d ", B[i++]);
 	} while (i < 3);
+	printf("\n");
+
+	int n;
+	printf("Enter size of array: ");
+	scanf("%d", &n);
+	int C[n];
+	i = 0;
+	while (i < n)
+	{
+		printf("%d ", C[i++]);
+	}
 	printf("\n");
 	return 0;
 }

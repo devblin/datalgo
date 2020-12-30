@@ -37,24 +37,28 @@ int main()
 	*/
 	cout << "Size of A: " << sizeof(A) << "\nSize of B: " << sizeof(B) << '\n';
 	cout << A[0] << " " << A[1] << "\n";
+
 	int i;
 	for (i = 0; i < 3; i++)
 	{
 		cout << B[i] << " ";
 	}
 	cout << "\n";
+
 	i = 0;
 	while (i < 3)
 	{
 		cout << B[i++] << " ";
 	}
 	cout << "\n";
+
 	i = 0;
 	do
 	{
 		cout << B[i++] << " ";
 	} while (i < 3);
 	cout << "\n";
+
 	for (auto x : B)
 	{
 		cout << x << " ";
@@ -70,5 +74,6 @@ int main()
 		cout << x << " ";
 	}
 	cout << "\n";
+
 	return 0;
 }
