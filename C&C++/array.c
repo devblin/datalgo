@@ -29,7 +29,9 @@ int main()
 
 	------------------------
 	*/
-
+	printf("size of A: %ld\n", sizeof(A));
+	printf("size of B: %ld\n", sizeof(B));
+	printf("%d %d\n", A[0], A[1]);
 	int i;
 	for (i = 0; i < 3; i++)
 	{

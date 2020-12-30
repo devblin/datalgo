@@ -35,7 +35,8 @@ int main()
 
 	------------------
 	*/
-
+	cout << "size of A: " << sizeof(A) << "\nsize of B: " << sizeof(B) << '\n';
+	cout << A[0] << " " << A[1] << "\n";
 	int i;
 	for (i = 0; i < 3; i++)
 	{
