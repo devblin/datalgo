@@ -3,10 +3,7 @@
 #### Compile & Run C/C++ program:
 
 > If you have GCC compiler installed
+> In terminal:
 
-```
-In terminal:
-
-g++ -o <output filename> <c/c++ filename>
-./<output filename>
-```
+Run: `g++ -o <output filename> <c/c++ filename>`
+Then, Run: `./<output filename>`
