@@ -85,13 +85,15 @@ int main()
 
 	------------------------
 	Stack Memory:
-	r[length][width]
-	r1[10][5]
+		r[length][width]
+		r1[10][5]
 	------------------------
 	Code Section:
-	main()
+		main()
 
 	------------------------
+	Intialized Segment (for global and static variables)
+		r1_global[length][widht]
 	*/
 	struct Rectangle r1 = {10, 5}; //intialization of length and width with datatype Rectangle
 	printf("Size of r: %ld\n", sizeof(r));
