@@ -23,6 +23,8 @@ struct Rectangle
 	//total size = 4+4 = 8;
 } rg = {99, 88}; //declaring global struct variable with intialization
 
+struct Rectangle r2_global; //declaring struct globally
+
 struct Student
 {
 	int roll;		  //size 4
@@ -46,6 +48,26 @@ struct __attribute__((__packed__)) Student2
 	char address[50]; //size 1*50 = 50
 
 	//total size = 4+25+50 = 79
+};
+
+struct RightAngledTriangle
+{
+	int height; // size 4
+	int base;	// size 4
+
+	//Size of this structure = 4+4 = 8
+};
+
+struct Complex
+{
+	int real;
+	int img;
+	/*Complex no.: (a + bi);
+	a -> real parrt
+	b -> imaginary part
+
+	Size of this structure = sizeof(img) + sizeof(real) = 4 + 4 = 9
+	*/
 };
 
 struct Card
