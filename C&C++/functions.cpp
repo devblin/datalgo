@@ -7,6 +7,15 @@ Monolithic Programming -> Everthing inside main.
 Modular/Procedural Programming -> Program consisting of several functions.
 */
 
+void SwapByRefAdd(int &a, int *b)
+{
+	int temp;
+	temp = a;
+	a = *b;
+	*b = temp;
+	cout << "Swap by reference & address\n";
+}
+
 void SwapByRef(int &a, int &b)
 {
 	int temp;
@@ -67,6 +76,10 @@ int main()
 
 	//PASS BY REFERENCE
 	SwapByRef(x1, y1);
+	cout << "x1: " << x1 << "\ny1: " << y1 << "\n";
+
+	//PASS BY REFERENCE AND ADDERSS
+	SwapByRefAdd(x1, &y1);
 	cout << "x1: " << x1 << "\ny1: " << y1 << "\n";
 
 	return 0;
