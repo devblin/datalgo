@@ -7,6 +7,15 @@ Monolithic Programming -> Everthing inside main.
 Modular/Procedural Programming -> Program consisting of several functions.
 */
 
+void SwapByAddress(int *a, int *b) //formal pointers points to address passed
+{
+	int temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
+	cout << "Swap by address\n";
+}
+
 void SwapByValue(int a, int b)
 {
 	int temp;
@@ -42,29 +51,9 @@ int main()
 	SwapByValue(x1, y1);
 	cout << "x1: " << x1 << "\ny1: " << y1 << "\n";
 
+	//PASS BY ADDRESS
+	SwapByAddress(&x1, &y1); //sending address of the variables
+	cout << "x1: " << x1 << "\ny1: " << y1 << "\n";
+
 	return 0;
 }
-
-/*
-MAIN MEMORY
-----------------------
-HEAP
-----------------------
-
-
-----------------------
-STACK
-----------------------
-swapbyvalue: a[10] b[5] => a[5] b[10] (gets deleted after swapping)
-add: a[10] b[5]  (gets deleted after return)
-main: 
-x[10] y[5] z[15] (prints 15)
-x1[10] y1[5] (no change in value of x1 & y1 after swapbyvalue)
-----------------------
-CODE SECTION
-----------------------
-swapbyvalue()
-add()
-main()
-----------------------
-*/
