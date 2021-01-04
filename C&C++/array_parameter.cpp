@@ -25,9 +25,9 @@ void Display2(int A[])
 	for (i = 0; i < n; i++)
 	{
 		cout << A[i] << " ";
-		A[i] = 4;
+		A[i] = 5;
 	}
-	cout << "\nReplacing all values by 4\n";
+	cout << "\nReplacing all values by 5\n";
 	for (i = 0; i < n; i++)
 		cout << A[i] << " ";
 	cout << "\n";
