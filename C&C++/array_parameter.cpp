@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void Display1(int *A) //array is always passed by address
+void Display1(int *A, int n) //array is always passed by address
 {
 	int i, n;
-	n = sizeof(A) / sizeof(A[0]);
 	cout << "Display1\n";
 	for (i = 0; i < n; i++)
 	{
@@ -17,10 +16,9 @@ void Display1(int *A) //array is always passed by address
 	cout << "\n";
 }
 
-void Display2(int A[])
+void Display2(int A[], int n)
 {
 	int i, n;
-	n = sizeof(A) / sizeof(A[0]);
 	cout << "Display2\n";
 	for (i = 0; i < n; i++)
 	{
@@ -43,11 +41,11 @@ int *ReturnArray(int n)
 int main()
 {
 	int A[3] = {1, 2, 3};
-	Display1(A);
-	Display2(A);
+	Display1(A, 3);
+	Display2(A, 3);
 	int *B;
 	B = ReturnArray(4);
-	Display1(B);
+	Display1(B, 3);
 	delete B;
 
 	return 0;
