@@ -7,6 +7,12 @@ struct Rectangle
 	int width;
 };
 
+struct Test
+{
+	int A[3];
+	int n;
+};
+
 int Area(struct Rectangle r)
 {
 	cout << "Area: ";
@@ -33,6 +39,21 @@ void ChangeWidth(struct Rectangle *r, int x)
 	r->width = x;
 }
 
+void DisplayTest(struct Test t)
+{
+	int i;
+	cout << "A: { ";
+	for (i = 0; i < t.n; i++)
+	{
+		cout << t.A[i];
+		if (i != (t.n) - 1)
+		{
+			cout << ", ";
+		}
+	}
+	cout << " }\n";
+}
+
 int main()
 {
 	struct Rectangle r = {10, 5};
@@ -45,4 +66,8 @@ int main()
 	cout << Area(r) << "\n";
 	ChangeWidth(&r, 12);
 	cout << Area(r) << "\n";
+
+	struct Test t = {{1, 2, 3}, 3};
+	DisplayTest(t);
+	return 0;
 }
