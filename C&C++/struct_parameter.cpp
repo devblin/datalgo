@@ -57,11 +57,11 @@ void DisplayTest(struct Test t)
 int main()
 {
 	struct Rectangle r = {10, 5};
-	cout << "r.length: " << r.length << "\nr.width: " << r.width << "\n";
+	cout << "r = {" << r.length << ", " << r.width << "}\n";
 	cout << Area(r) << "\n";
 	cout << "Incrementing length & width\n";
 	cout << AreaRef(r) << "\n";
-	cout << "r.length: " << r.length << "\nr.width: " << r.width << "\n";
+	cout << "r = {" << r.length << ", " << r.width << "}\n";
 	ChangeLength(&r, 12);
 	cout << Area(r) << "\n";
 	ChangeWidth(&r, 12);
