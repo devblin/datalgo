@@ -27,6 +27,15 @@ int AreaRef(struct Rectangle &r)
 	return r.length * r.width;
 }
 
+struct Rectangle *NewRect()
+{
+	struct Rectangle *p;
+	p = new Rectangle;
+	p->length = 99;
+	p->width = 88;
+	return p;
+}
+
 void ChangeLength(struct Rectangle *r, int x)
 {
 	cout << "Changing length to " << x << "\n";
@@ -69,5 +78,10 @@ int main()
 
 	struct Test t = {{1, 2, 3}, 3};
 	DisplayTest(t);
+
+	struct Rectangle *r1;
+	r1 = NewRect();
+	cout << Area(*r1) << "\n";
+
 	return 0;
 }
