@@ -21,7 +21,13 @@ execute() {
 
 while true;
 do
-	printf "\n${CYAN}---------RUN & COMPILE C++ PROGRAMS----------${NC}\n"
+	printf "${LGREEN}
+	 ____                 ____            
+	|  _ \ _   _ _ __    / ___| _     _   
+	| |_) | | | | '_ \  | |   _| |_ _| |_ 
+	|  _ <| |_| | | | | | |__|_   _|_   _|
+	|_| \_ \\__,_|_| |_|  \____||_|   |_|  
+	${NC}\n"
 	printf "${YELLOW}1. practice\n2. C&C++\n${NC}${RED}0. Exit${NC}\n"
 	printf "${CYAN}>> Enter the SI.No.:${NC} "
 	read OPTION
