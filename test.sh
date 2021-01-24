@@ -43,4 +43,5 @@ do
 		printf "${RED}\nBye-Bye${NC}\n"
 		break
 	fi
+	rm test
 done
