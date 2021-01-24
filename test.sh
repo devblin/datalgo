@@ -9,14 +9,16 @@ LGREEN='\033[1;32m'
 execute() {
 	printf "\n${GREEN}>> Available Files:${NC}\n"
 	printf "${YELLOW}"
-	ls "${1}"
+	cd "${1}"
+	ls *.cpp
 	printf "${NC}${CYAN}\n>> Enter Filename: ${NC}"
 	read FILENAME
 	printf "${YELLOW}Please Wait...${NC}\n"
+	cd ..
 	g++ -o test "${1}/${FILENAME}.cpp"
 	printf "${LGREEN}Code Complied...\n${NC}"
 	./test
-	printf "\n${CYAN}---------------------------------------------${NC}"
+	printf "\n${CYAN}-------------------------------------------------------${NC}"
 }
 
 while true;
