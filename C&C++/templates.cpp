@@ -69,5 +69,11 @@ int main()
 	a.substract();
 	a.multiply();
 	a.divide();
+
+	Arithmatic<int> b(x, y);
+	b.add();
+	b.substract();
+	b.multiply();
+	b.divide();
 	return 0;
 }
