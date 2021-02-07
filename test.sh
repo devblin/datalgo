@@ -7,18 +7,20 @@ GREEN='\033[0;32m'
 LGREEN='\033[1;32m'
 
 execute() {
-	printf "\n${GREEN}>> Available Files:${NC}\n"
+	printf "${GREEN}>> Available Files:${NC}\n"
 	printf "${YELLOW}"
 	cd "${1}"
 	ls *.cpp
-	printf "${NC}${CYAN}\n>> Enter Filename: ${NC}"
+	printf "${NC}${CYAN}>> Enter Filename: ${NC}"
 	read FILENAME
-	printf "${YELLOW}Please Wait...${NC}\n"
+	printf "${YELLOW}Please Wait...\n${NC}"
 	cd ..
 	g++ -o test "${1}/${FILENAME}.cpp"
 	printf "${LGREEN}Code Complied...\n${NC}"
+	# clear
+	printf "${LGREEN}Output\n------\n${NC}"
 	./test
-	printf "\n${CYAN}-------------------------------------------------------${NC}"
+	# printf "\n${CYAN}-------------------------------------------------------${NC}"
 }
 
 while true;
@@ -42,7 +44,7 @@ do
 		execute 'C&C++'
 	elif [ $OPTION -eq 0 ]
 	then
-		printf "${RED}\nBye-Bye${NC}\n"
+		printf "${RED}Bye-Bye${NC}\n"
 		break
 	fi
 	rm test
