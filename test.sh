@@ -32,7 +32,7 @@ do
 	|  _ <| |_| | | | | | |__|_   _|_   _|
 	|_| \_ \\__,_|_| |_|  \____||_|   |_|
 	${NC}\n"
-	printf "${YELLOW}1. practice\n2. C&C++\n${NC}${RED}0. Exit${NC}\n"
+	printf "${YELLOW}1. practice\n2. c&cpp\n3. recursion\n${NC}${RED}0. Exit${NC}\n"
 	printf "${CYAN}>> Enter the SI.No.:${NC} "
 	read OPTION
 
@@ -41,7 +41,10 @@ do
 		execute 'practice'
 	elif [ $OPTION -eq 2 ]
 	then
-		execute 'C&C++'
+		execute 'c&cpp'
+	elif [ $OPTION -eq 3]
+	then
+		execute 'recursion'
 	elif [ $OPTION -eq 0 ]
 	then
 		printf "${RED}Bye-Bye${NC}\n"
