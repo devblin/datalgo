@@ -42,7 +42,7 @@ do
 	elif [ $OPTION -eq 2 ]
 	then
 		execute 'c&cpp'
-	elif [ $OPTION -eq 3]
+	elif [ $OPTION -eq 3 ]
 	then
 		execute 'recursion'
 	elif [ $OPTION -eq 0 ]

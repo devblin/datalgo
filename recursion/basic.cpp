@@ -1,13 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int fun1(char x)
+void fun1(char x)
 {
 	int n = 0;
 	while (n < 10)
 	{
 		cout << x;
-		if (n < 9)
+		n++;
+		if (n < 10)
 			cout << ", ";
 	}
 	cout << endl;
