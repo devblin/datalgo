@@ -51,5 +51,4 @@ do
 		break
 	fi
 	rm test
-	clear
 done
