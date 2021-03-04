@@ -1,5 +1,11 @@
 # Recursion
 
+- Types of Recursion:
+  - Tail
+  - Head
+  - Tree
+  - Indirect
+  - Nested
 - Time & Space Complexity of Recursive Function:
 
   ```
