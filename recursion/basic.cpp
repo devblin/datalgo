@@ -1,23 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void fun1(char x)
+void fun1(int n)
 {
-	int n = 0;
-	while (n < 10)
+	if (n > 0)
 	{
-		cout << x;
-		n++;
-		if (n < 10)
-			cout << ", ";
+		cout << n << " "; //printed during calling
+		fun1(n - 1);
 	}
-	cout << endl;
+}
+
+void fun2(int n)
+{
+	if (n > 0)
+	{
+		fun2(n - 1);
+		cout << n << " "; //printed during returning
+	}
 }
 
 int main()
 {
-	char x;
+	int x;
 	cin >> x;
 	fun1(x);
+	cout << endl;
+	fun2(x);
 	return 0;
 }
