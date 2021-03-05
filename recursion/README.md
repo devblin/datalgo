@@ -1,8 +1,9 @@
 # Recursion
 
 - Types of Recursion:
-  - Tail
-  - Head
+  - Linear
+    - Tail
+    - Head
   - Tree
   - Indirect
   - Nested
