@@ -2,7 +2,7 @@
 
 Code collection of basic ds-algo implementation.
 
-## Compile & Run C/C++ program:
+### How to run:
 
 > If you have GCC compiler installed,
 > Do as below to compile and run C/C++ programs
