@@ -70,7 +70,9 @@
   Thus,
   For n = k, fun() will be called 2^(k+1) - 1 times
   T(n) = O(2^(n+1) - 1) = O(2^n)
-  S(n) = T(n) = O(2^n)
+
+  For n = k, height of recursion tree is (k+1)
+  S(n) = O(n+1) = O(n)
 
   Output:
   -------
