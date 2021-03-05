@@ -21,6 +21,16 @@ void fun1(int n)
 	}
 }
 
+void fun3(int n)
+{
+	if (n > 0)
+	{
+		fun3(n - 1);
+		fun3(n - 1);
+		cout << n << " ";
+	}
+}
+
 int main()
 {
 	int x;
@@ -28,5 +38,7 @@ int main()
 	fun(x);
 	cout << "\n";
 	fun1(x);
+	cout << "\n";
+	fun3(x);
 	return 0;
 }
