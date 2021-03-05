@@ -7,7 +7,7 @@
   - Tree
   - Indirect
   - Nested
-- Time & Space Complexity of Recursive Function:
+- Time & Space Complexity of Linear Recursive Function:
 
   ```
   void fun(int n) {
@@ -35,10 +35,46 @@
   For n=3, fun() is called 4 times,
   So, for n = k fun() will be called (k+1) times
   Time Complexity -> O(n+1) = O(n)
+  Space Complexity -> O(n+1) = O(n)
 
   Output:
   -------
   3 2 1
+  ```
+
+- Time and Space Complexity of Tree Recursive Function:
+
+  ```
+  void fun(int n) {
+    if(n > 0) {
+  		printf("%d", n);
+  	  	fun(n-1);
+  		fun(n-1);
+    }
+  }
+
+  Calling above function for n = 2:
+  ---------------------------------
+  		  f(2)
+  		  / | \
+  		 /  |  \
+  		2 f(1)  f(1) ---- f(0) ---- x
+  		  / | \   | \
+         /  |  \  1  \
+  	 	1 f(0) f(0) f(0)
+  		    |   |    |
+  		    |   |    |
+  		    x   x    x
+
+  For n = 2, fun() will be called 7 times
+  Thus,
+  For n = k, fun() will be called 2^(k+1) - 1 times
+  T(n) = O(2^(n+1) - 1) = O(2^n)
+  S(n) = T(n) = O(2^n)
+
+  Output:
+  -------
+  2 1 1
   ```
 
 - Recurrence Relation:
