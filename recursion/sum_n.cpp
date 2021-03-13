@@ -9,6 +9,19 @@ int sumRecursion(int n)
 	}
 	return 0;
 }
+/*
+T(n) = O(n)
+S(n) = 0(n)
+*/
+
+int sumFormula(int n)
+{
+	return n * (n + 1) / 2;
+}
+/*
+T(n) = O(1)
+S(n) = O(1)
+*/
 
 int sumLoop(int n)
 {
@@ -19,13 +32,18 @@ int sumLoop(int n)
 	}
 	return sum;
 }
+/*
+T(n) = O(n)
+S(n) = O(1)
+*/
 
 int main()
 {
 	int x;
 	cin >> x;
 	cout << "Sum using recursion: " << sumRecursion(x) << endl;
-	cout << "Sum using loop: " << sumLoop(x);
+	cout << "Sum using loop: " << sumLoop(x) << endl;
+	cout << "Sum using formula: " << sumFormula(x);
 
 	return 0;
 }
