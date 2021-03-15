@@ -9,6 +9,11 @@ int powerRecursion(int base, int exp)
     }
     return 1;
 }
+/*
+n = exp
+T(n) = O(n)
+S(n) = O(n)
+*/
 
 int powerLoop(int base, int exp)
 {
@@ -19,6 +24,11 @@ int powerLoop(int base, int exp)
     }
     return ans;
 }
+/*
+n = exp
+T(n) = O(n)
+S(n) = O(1)
+*/
 
 int powerRecursionOptimized(int base, int exp)
 {
@@ -29,6 +39,11 @@ int powerRecursionOptimized(int base, int exp)
     else
         return base * powerRecursionOptimized(base * base, (exp - 1) / 2);
 }
+/*
+n = exp
+T(n) = log(n)
+S(n) = log(n)
+*/
 
 int main()
 {
