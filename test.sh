@@ -15,11 +15,11 @@ execute() {
 	read FILENAME
 	printf "${YELLOW}Please Wait...\n${NC}"
 	cd ..
-	g++ -o test "${1}/${FILENAME}.cpp"
+	g++ "${1}/${FILENAME}.cpp"
 	printf "${LGREEN}Code Complied...\n${NC}"
 	# clear
 	printf "${LGREEN}Output\n------\n${NC}"
-	./test
+	./a
 	# printf "\n${CYAN}-------------------------------------------------------${NC}"
 }
 
@@ -32,7 +32,7 @@ do
 	|  _ <| |_| | | | | | |__|_   _|_   _|
 	|_| \_ \\__,_|_| |_|  \____||_|   |_|
 	${NC}\n"
-	printf "${YELLOW}1. practice\n2. c&cpp\n3. recursion\n${NC}${RED}0. Exit${NC}\n"
+	printf "${YELLOW}1. practice\n2. c&cpp\n3. recursion\n4. array\n${NC}${RED}0. Exit${NC}\n"
 	printf "${CYAN}>> Enter the SI.No.:${NC} "
 	read OPTION
 
@@ -45,10 +45,13 @@ do
 	elif [ $OPTION -eq 3 ]
 	then
 		execute 'recursion'
+	elif [ $OPTION -eq 4 ]
+	then
+		execute 'array'
 	elif [ $OPTION -eq 0 ]
 	then
 		printf "${RED}Bye-Bye${NC}\n"
 		break
 	fi
-	rm test
+	rm a.exe
 done
