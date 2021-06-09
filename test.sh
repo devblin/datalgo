@@ -32,7 +32,7 @@ do
 	|  _ <| |_| | | | | | |__|_   _|_   _|
 	|_| \_ \\__,_|_| |_|  \____||_|   |_|
 	${NC}\n"
-	printf "${YELLOW}1. practice\n2. c&cpp\n3. recursion\n4. array\n${NC}${RED}0. Exit${NC}\n"
+	printf "${YELLOW}1. practice\n2. c&cpp\n3. recursion\n4. array\n5. string\n${NC}${RED}0. Exit${NC}\n"
 	printf "${CYAN}>> Enter the SI.No.:${NC} "
 	read OPTION
 
@@ -48,6 +48,9 @@ do
 	elif [ $OPTION -eq 4 ]
 	then
 		execute 'array'
+	elif [ $OPTION -eq 5 ]
+	then
+		execute 'string'
 	elif [ $OPTION -eq 0 ]
 	then
 		printf "${RED}Bye-Bye${NC}\n"
