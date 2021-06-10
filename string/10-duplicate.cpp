@@ -45,8 +45,24 @@ void duplicateHashTable(string x)
     }
 }
 
-void duplicateBit(string x)
+void duplicateBitwise(string x)
 {
+    long long int h = 0, y = 0;
+    int strLen = x.size(), i;
+    cout << "Duplicates are: ";
+    for (i = 0; i < strLen; i++)
+    {
+        y = 1;
+        if (x[i] >= 65 && x[i] <= 90)
+            y = (y << (x[i] - 65));
+        else if (x[i] >= 97 && x[i] <= 122)
+            y = (y << (x[i] - 71));
+
+        if ((y & h) > 0)
+            cout << x[i] << " ";
+        else
+            h = y | h;
+    }
 }
 
 int main()
@@ -55,4 +71,5 @@ int main()
     getline(cin, x);
     duplicateCompare(x);
     duplicateHashTable(x);
+    duplicateBitwise(x);
 }

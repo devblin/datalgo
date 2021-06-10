@@ -5,21 +5,31 @@ CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 GREEN='\033[0;32m'
 LGREEN='\033[1;32m'
+WHITE='\033[1;37m'
 
 execute() {
 	printf "${GREEN}>> Available Files:${NC}\n"
 	printf "${YELLOW}"
 	cd "${1}"
-	ls *.cpp
-	printf "${NC}${CYAN}>> Enter Filename: ${NC}"
-	read FILENAME
+	fileArray=( *.cpp )
+	declare -i fileCount=1
+
+	for i in "${fileArray[@]}";
+	do 
+		printf "${RED}$fileCount.${NC}${WHITE} $i${NC}\n"
+		((fileCount++))
+	done
+	printf "${NC}${CYAN}>> Enter File No.: ${NC}"
+	read FILENO
 	printf "${YELLOW}Please Wait...\n${NC}"
 	cd ..
-	g++ "${1}/${FILENAME}.cpp"
+	g++ "${1}/${fileArray[$FILENO - 1]}"
 	printf "${LGREEN}Code Complied...\n${NC}"
 	# clear
 	printf "${LGREEN}Output\n------\n${NC}"
+	printf "${WHITE}"
 	./a
+	printf "${NC}"
 	# printf "\n${CYAN}-------------------------------------------------------${NC}"
 }
 
@@ -32,25 +42,24 @@ do
 	|  _ <| |_| | | | | | |__|_   _|_   _|
 	|_| \_ \\__,_|_| |_|  \____||_|   |_|
 	${NC}\n"
-	printf "${YELLOW}1. practice\n2. c&cpp\n3. recursion\n4. array\n5. string\n${NC}${RED}0. Exit${NC}\n"
+
+	dirArray=( */ )
+	declare -i dirCount=1
+
+	for i in "${dirArray[@]}";
+	do 
+		printf "${WHITE}$dirCount. $i${NC}\n"
+		((dirCount++))
+	done
+
+	printf "${RED}0. Exit${NC}\n"
+
 	printf "${CYAN}>> Enter the SI.No.:${NC} "
 	read OPTION
 
-	if [ $OPTION -eq 1 ]
+	if [ $OPTION -ge 1 ]
 	then
-		execute 'practice'
-	elif [ $OPTION -eq 2 ]
-	then
-		execute 'c&cpp'
-	elif [ $OPTION -eq 3 ]
-	then
-		execute 'recursion'
-	elif [ $OPTION -eq 4 ]
-	then
-		execute 'array'
-	elif [ $OPTION -eq 5 ]
-	then
-		execute 'string'
+		execute "${dirArray[$OPTION - 1]}"
 	elif [ $OPTION -eq 0 ]
 	then
 		printf "${RED}Bye-Bye${NC}\n"
