@@ -1,4 +1,5 @@
 #!/bin/bash
+
 RED='\033[0;31m'
 NC='\033[0m'
 CYAN='\033[0;36m'
@@ -11,6 +12,7 @@ execute() {
 	printf "${GREEN}>> Available Files:${NC}\n"
 	printf "${YELLOW}"
 	cd "${1}"
+
 	fileArray=( *.cpp )
 	declare -i fileCount=1
 
@@ -19,6 +21,7 @@ execute() {
 		printf "${RED}$fileCount.${NC}${WHITE} $i${NC}\n"
 		((fileCount++))
 	done
+
 	printf "${NC}${CYAN}>> Enter File No.: ${NC}"
 	read FILENO
 	printf "${YELLOW}Please Wait...\n${NC}"
@@ -28,7 +31,17 @@ execute() {
 	# clear
 	printf "${LGREEN}Output\n------\n${NC}"
 	printf "${WHITE}"
-	./a
+
+
+	# Executing output file based on OS
+	if [[ "$OSTYPE" == "linux-gnu"* ]];
+	then
+		./a.out
+	elif [[ "$OSTYPE" == "win32" ]];
+	then
+		./a
+	fi
+
 	printf "${NC}"
 	# printf "\n${CYAN}-------------------------------------------------------${NC}"
 }
@@ -65,5 +78,16 @@ do
 		printf "${RED}Bye-Bye${NC}\n"
 		break
 	fi
-	rm a.exe
+
+	# Checking OS
+	if [[ "$OSTYPE" == "linux-gnu"* ]];
+	then
+		rm a.out
+	elif [[ "$OSTYPE" == "win32" ]];
+	then
+		rm a.exe
+	else
+		echo "Can't find OS type"	
+	fi
+
 done
