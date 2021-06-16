@@ -49,7 +49,7 @@ int main()
     char x6[] = {'d', 'h', 'r', 'u', 'w', '\0'};
     printChar(x6);
 
-    char *x7 = "devblin";
+    char *x7 = (char *)"devblin";
     printChar(x7);
 
     string x8;
