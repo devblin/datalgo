@@ -8,6 +8,14 @@ string INVALID_INDEX = "Array full or Invalid index",
        ENTER_VALUE = "Enter value: ",
        ENTER_INDEX_VALUE = "Enter index & value: ";
 
+void Swap(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 class Array
 {
 private:
@@ -21,7 +29,10 @@ public:
     void Append(int value);
     void Insert(int index, int value);
     void Delete(int index);
-    int Search(int value);
+    int LinearSearch(int key);
+    int LinearSearchTransposition(int key);
+    int LinearSearchMoveToHead(int key);
+    int BinarySearch(int key);
     int Get(int index);
     void Set(int index, int value);
     int Max();
@@ -57,10 +68,11 @@ void Array::Append(int value)
         A[length] = value;
         cout << "Appended " << value << "\n";
         length++;
-        Display();
     }
     else
         cout << FULL_ARRAY;
+
+    Display();
     cout << "\n";
 }
 
@@ -74,10 +86,11 @@ void Array::Insert(int index, int value)
         A[i] = value;
         length++;
         cout << "Inserted " << value << " at " << index << "\n";
-        Display();
     }
     else
         cout << INVALID_INDEX;
+
+    Display();
     cout << "\n";
 }
 
@@ -94,7 +107,50 @@ void Array::Delete(int index)
     }
     else
         cout << INVALID_INDEX;
+
+    Display();
     cout << "\n";
+}
+
+int Array::LinearSearch(int key)
+{
+    int i;
+    for (i = 0; i < length; i++)
+        if (A[i] == key)
+            return i;
+    return -1;
+}
+
+int Array::LinearSearchTransposition(int key)
+{
+    int i;
+    for (i = 0; i < length; i++)
+    {
+        if (A[i] == key)
+        {
+            if (i > 0)
+            {
+                Swap(&A[i], &A[i - 1]);
+                return i - 1;
+            }
+            return i;
+        }
+    }
+    return -1;
+}
+
+int Array::LinearSearchMoveToHead(int key)
+{
+    int i;
+    for (i = 0; i < length; i++)
+    {
+        if (A[i] == key)
+        {
+            Swap(&A[i], &A[0]);
+            return 0;
+        }
+    }
+    return -1;
 }
 
 Array::~Array()
@@ -110,6 +166,8 @@ void Menu(Array *a)
     cout << "1. Append\n";
     cout << "2. Insert\n";
     cout << "3. Delete\n";
+    cout << "4. LinearSearch\n";
+    cout << "5. LinearSearchTransposition\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
@@ -129,6 +187,24 @@ void Menu(Array *a)
         cout << ENTER_INDEX;
         cin >> index;
         a->Delete(index);
+        break;
+    case 4:
+        cout << ENTER_VALUE;
+        cin >> value;
+        cout << "LinearSearch " << value << ":" << a->LinearSearch(value) << "\n";
+        a->Display();
+        break;
+    case 5:
+        cout << ENTER_VALUE;
+        cin >> value;
+        cout << "LinearSearchTransposition " << value << ":" << a->LinearSearchTransposition(value) << "\n";
+        a->Display();
+        break;
+    case 6:
+        cout << ENTER_VALUE;
+        cin >> value;
+        cout << "LinearSearchMoveToHead " << value << ":" << a->LinearSearchMoveToHead(value) << "\n";
+        a->Display();
         break;
     default:
         break;
