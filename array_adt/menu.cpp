@@ -18,12 +18,11 @@ void Swap(int *a, int *b)
 
 class Array
 {
-private:
+public:
     int *A;
     int size;
     int length;
 
-public:
     Array(int newSize);
     void Display();
     void Append(int value);
@@ -32,7 +31,8 @@ public:
     int LinearSearch(int key);
     int LinearSearchTransposition(int key);
     int LinearSearchMoveToHead(int key);
-    int BinarySearch(int key);
+    int BinarySearchI(int low, int high, int key);
+    int BinarySearchR(int low, int high, int key);
     int Get(int index);
     void Set(int index, int value);
     int Max();
@@ -153,6 +153,37 @@ int Array::LinearSearchMoveToHead(int key)
     return -1;
 }
 
+int Array::BinarySearchI(int low, int high, int key)
+{
+    while (low <= high)
+    {
+        int middle = (low + high) / 2;
+        if (A[middle] == key)
+            return middle;
+        else if (key < A[middle])
+            high = middle - 1;
+        else if (key > A[middle])
+            low = middle + 1;
+    }
+    return -1;
+}
+
+int Array::BinarySearchR(int low, int high, int key)
+{
+    int middle = (low + high) / 2;
+
+    if (low > high)
+    {
+        if (A[middle] == key)
+            return middle;
+        else if (key < A[middle])
+            return BinarySearchR(low, middle - 1, key);
+        else if (key > A[middle])
+            return BinarySearchR(middle + 1, high, key);
+    }
+    return -1;
+}
+
 Array::~Array()
 {
     delete[] A;
@@ -168,6 +199,9 @@ void Menu(Array *a)
     cout << "3. Delete\n";
     cout << "4. LinearSearch\n";
     cout << "5. LinearSearchTransposition\n";
+    cout << "6. LinearSearchMoveToHead\n";
+    cout << "7. BinarySearchI\n";
+    cout << "8. BinarySearchR\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
@@ -204,6 +238,18 @@ void Menu(Array *a)
         cout << ENTER_VALUE;
         cin >> value;
         cout << "LinearSearchMoveToHead " << value << ":" << a->LinearSearchMoveToHead(value) << "\n";
+        a->Display();
+        break;
+    case 7:
+        cout << ENTER_VALUE;
+        cin >> value;
+        cout << "BinarySearchI " << value << ":" << a->BinarySearchI(0, a->length - 1, value) << "\n";
+        a->Display();
+        break;
+    case 8:
+        cout << ENTER_VALUE;
+        cin >> value;
+        cout << "BinarySearchR " << value << ":" << a->BinarySearchR(0, a->length - 1, value) << "\n";
         a->Display();
         break;
     default:
