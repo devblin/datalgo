@@ -37,6 +37,9 @@ public:
     void Set(int index, int value);
     int Max();
     int Min();
+    int SumI();
+    int SumR(int n);
+    int Avg();
     void Reverse();
     void Rotate(int times);
     ~Array();
@@ -184,6 +187,64 @@ int Array::BinarySearchR(int low, int high, int key)
     return -1;
 }
 
+int Array::Get(int index)
+{
+    if (index >= 0 && index < length)
+        return A[index];
+
+    cout << "Invalid index\n";
+    return -1;
+}
+
+void Array::Set(int index, int value)
+{
+    if (index >= 0 && index < length)
+    {
+        A[index] = value;
+        cout << "Set " << value << " at " << index << "\n";
+    }
+    else
+        cout << "Invalid index\n";
+}
+
+int Array::Max()
+{
+    int max = INT_MIN, i;
+    for (i = 0; i < length; i++)
+        if (A[i] > max)
+            max = A[i];
+    return max;
+}
+
+int Array::Min()
+{
+    int min = INT_MAX, i;
+    for (i = 0; i < length; i++)
+        if (A[i] < min)
+            min = A[i];
+    return min;
+}
+
+int Array::SumI()
+{
+    int sum = 0, i;
+    for (i = 0; i < length; i++)
+        sum += A[i];
+    return sum;
+}
+
+int Array::SumR(int n)
+{
+    if (n < 0)
+        return 0;
+    return SumR(n - 1) + A[n];
+}
+
+int Array::Avg()
+{
+    return SumI() / length;
+}
+
 Array::~Array()
 {
     delete[] A;
@@ -202,9 +263,15 @@ void Menu(Array *a)
     cout << "6. LinearSearchMoveToHead\n";
     cout << "7. BinarySearchI\n";
     cout << "8. BinarySearchR\n";
+    cout << "9. Get\n";
+    cout << "10. Set\n";
+    cout << "11. Max\n";
+    cout << "12. Min\n";
+    cout << "13. Sum&Avg\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
+    cout << "--------------------\n";
     switch (option)
     {
     case 1:
@@ -252,9 +319,36 @@ void Menu(Array *a)
         cout << "BinarySearchR " << value << ":" << a->BinarySearchR(0, a->length - 1, value) << "\n";
         a->Display();
         break;
+    case 9:
+        cout << ENTER_INDEX;
+        cin >> index;
+        cout << "Value at " << index << " : " << a->Get(index) << "\n";
+        a->Display();
+        break;
+    case 10:
+        cout << ENTER_INDEX_VALUE;
+        cin >> index >> value;
+        a->Set(index, value);
+        a->Display();
+        break;
+    case 11:
+        cout << "Max: " << a->Max() << "\n";
+        a->Display();
+        break;
+    case 12:
+        cout << "Min: " << a->Min() << "\n";
+        a->Display();
+        break;
+    case 13:
+        cout << "SumR: " << a->SumR(a->length - 1) << "\n";
+        cout << "SumI: " << a->SumI() << "\n";
+        cout << "Avg: " << a->Avg() << "\n";
+        a->Display();
+        break;
     default:
         break;
     }
+    cout << "--------------------\n";
     if (option != 0)
         Menu(a);
 }
