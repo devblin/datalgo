@@ -43,6 +43,9 @@ public:
     void Reverse();
     void LeftShiftRotate();
     void RightShiftRotate();
+    void InsertInSorted(int value);
+    bool CheckSorted();
+    void SeparateNegativePositive();
     ~Array();
 };
 
@@ -92,7 +95,7 @@ void Array::Insert(int index, int value)
         cout << "Inserted " << value << " at " << index << "\n";
     }
     else
-        cout << INVALID_INDEX;
+        cout << INVALID_INDEX << "\n";
 
     Display();
     cout << "\n";
@@ -290,6 +293,41 @@ void Array::RightShiftRotate()
     Display();
 }
 
+void Array::InsertInSorted(int value)
+{
+    int i;
+    for (i = length - 1; i >= 0; i--)
+    {
+        if (value > A[i])
+            break;
+    }
+    Insert(i + 1, value);
+}
+
+bool Array::CheckSorted()
+{
+    int i;
+    for (i = 0; i < length - 1; i++)
+        if (A[i] > A[i + 1])
+            return false;
+    return true;
+}
+
+void Array::SeparateNegativePositive()
+{
+    int i = 0, j = length - 1;
+    while (i < j)
+    {
+        while (A[i] < 0)
+            i++;
+        while (A[j] > 0)
+            j--;
+        if (i < j)
+            Swap(&A[i], &A[j]);
+    }
+    Display();
+}
+
 Array::~Array()
 {
     delete[] A;
@@ -316,6 +354,9 @@ void Menu(Array *a)
     cout << "14. Reverse\n";
     cout << "15. LeftShiftRotate\n";
     cout << "16. RightShiftRotate\n";
+    cout << "17. InsertInSorted\n";
+    cout << "18. CheckSorted\n";
+    cout << "19. SeparateNegativePositive\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
@@ -402,6 +443,17 @@ void Menu(Array *a)
         break;
     case 16:
         a->RightShiftRotate();
+        break;
+    case 17:
+        cout << ENTER_VALUE;
+        cin >> value;
+        a->InsertInSorted(value);
+        break;
+    case 18:
+        cout << "Is array sorted? " << a->CheckSorted() << "\n";
+        break;
+    case 19:
+        a->SeparateNegativePositive();
         break;
     default:
         break;
