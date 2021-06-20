@@ -41,7 +41,8 @@ public:
     int SumR(int n);
     int Avg();
     void Reverse();
-    void Rotate(int times);
+    void LeftShiftRotate();
+    void RightShiftRotate();
     ~Array();
 };
 
@@ -245,6 +246,50 @@ int Array::Avg()
     return SumI() / length;
 }
 
+void Array::Reverse()
+{
+    int i;
+    cout << "Reverse using copying array: ";
+    int B[length];
+    for (i = 0; i < length; i++)
+        B[length - i - 1] = A[i];
+    for (i = 0; i < length; i++)
+        A[i] = B[i];
+    Display();
+    cout << "Reverse by swaping elements: ";
+    for (i = 0; i < length / 2; i++)
+        Swap(&A[i], &A[length - i - 1]);
+    Display();
+}
+
+void Array::LeftShiftRotate()
+{
+    int i, first;
+    cout << "LeftShift: ";
+    first = A[0];
+    for (i = 0; i < length - 1; i++)
+        A[i] = A[i + 1];
+    A[i] = 0;
+    Display();
+    cout << "LeftRotate: ";
+    A[i] = first;
+    Display();
+}
+
+void Array::RightShiftRotate()
+{
+    int i, last;
+    cout << "RightShift: ";
+    last = A[length - 1];
+    for (i = length - 1; i > 0; i--)
+        A[i] = A[i - 1];
+    A[i] = 0;
+    Display();
+    cout << "RightRotate: ";
+    A[i] = last;
+    Display();
+}
+
 Array::~Array()
 {
     delete[] A;
@@ -268,6 +313,9 @@ void Menu(Array *a)
     cout << "11. Max\n";
     cout << "12. Min\n";
     cout << "13. Sum&Avg\n";
+    cout << "14. Reverse\n";
+    cout << "15. LeftShiftRotate\n";
+    cout << "16. RightShiftRotate\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
@@ -344,6 +392,16 @@ void Menu(Array *a)
         cout << "SumI: " << a->SumI() << "\n";
         cout << "Avg: " << a->Avg() << "\n";
         a->Display();
+        break;
+    case 14:
+        a->Reverse();
+        a->Display();
+        break;
+    case 15:
+        a->LeftShiftRotate();
+        break;
+    case 16:
+        a->RightShiftRotate();
         break;
     default:
         break;
