@@ -8,55 +8,59 @@ string INVALID_INDEX = "Array full or Invalid index",
        ENTER_VALUE = "Enter value: ",
        ENTER_INDEX_VALUE = "Enter index & value: ";
 
-void Swap(int *a, int *b)
+template <class T>
+void Swap(T *a, T *b)
 {
-    int temp;
+    T temp;
     temp = *a;
     *a = *b;
     *b = temp;
 }
 
+template <class T>
 class Array
 {
 public:
-    int *A;
+    T *A;
     int size;
     int length;
 
     Array(int newSize);
     void Display();
-    void Append(int value);
-    void Insert(int index, int value);
+    void Append(T value);
+    void Insert(int index, T value);
     void Delete(int index);
-    int LinearSearch(int key);
-    int LinearSearchTransposition(int key);
-    int LinearSearchMoveToHead(int key);
-    int BinarySearchI(int low, int high, int key);
-    int BinarySearchR(int low, int high, int key);
-    int Get(int index);
-    void Set(int index, int value);
-    int Max();
-    int Min();
-    int SumI();
-    int SumR(int n);
-    int Avg();
+    int LinearSearch(T key);
+    int LinearSearchTransposition(T key);
+    int LinearSearchMoveToHead(T key);
+    int BinarySearchI(int low, int high, T key);
+    int BinarySearchR(int low, int high, T key);
+    T Get(int index);
+    void Set(int index, T value);
+    T Max();
+    T Min();
+    T SumI();
+    T SumR(int n);
+    T Avg();
     void Reverse();
     void LeftShiftRotate();
     void RightShiftRotate();
-    void InsertInSorted(int value);
+    void InsertInSorted(T value);
     bool CheckSorted();
     void SeparateNegativePositive();
     ~Array();
 };
 
-Array::Array(int newSize)
+template <class T>
+Array<T>::Array(int newSize)
 {
     size = newSize;
-    A = new int[size];
+    A = new T[size];
     length = 0;
 }
 
-void Array::Display()
+template <class T>
+void Array<T>::Display()
 {
     int i;
     cout << "Array: ";
@@ -68,7 +72,8 @@ void Array::Display()
     cout << "\n";
 }
 
-void Array::Append(int value)
+template <class T>
+void Array<T>::Append(T value)
 {
     if (length < size)
     {
@@ -83,7 +88,8 @@ void Array::Append(int value)
     cout << "\n";
 }
 
-void Array::Insert(int index, int value)
+template <class T>
+void Array<T>::Insert(int index, T value)
 {
     int i;
     if (length < size && index >= 0 && index <= length)
@@ -101,7 +107,8 @@ void Array::Insert(int index, int value)
     cout << "\n";
 }
 
-void Array::Delete(int index)
+template <class T>
+void Array<T>::Delete(int index)
 {
     int i, deletedVal;
     if (length > 0 && index < length && index >= 0)
@@ -119,7 +126,8 @@ void Array::Delete(int index)
     cout << "\n";
 }
 
-int Array::LinearSearch(int key)
+template <class T>
+int Array<T>::LinearSearch(T key)
 {
     int i;
     for (i = 0; i < length; i++)
@@ -128,7 +136,8 @@ int Array::LinearSearch(int key)
     return -1;
 }
 
-int Array::LinearSearchTransposition(int key)
+template <class T>
+int Array<T>::LinearSearchTransposition(T key)
 {
     int i;
     for (i = 0; i < length; i++)
@@ -146,7 +155,8 @@ int Array::LinearSearchTransposition(int key)
     return -1;
 }
 
-int Array::LinearSearchMoveToHead(int key)
+template <class T>
+int Array<T>::LinearSearchMoveToHead(T key)
 {
     int i;
     for (i = 0; i < length; i++)
@@ -160,7 +170,8 @@ int Array::LinearSearchMoveToHead(int key)
     return -1;
 }
 
-int Array::BinarySearchI(int low, int high, int key)
+template <class T>
+int Array<T>::BinarySearchI(int low, int high, T key)
 {
     while (low <= high)
     {
@@ -175,7 +186,8 @@ int Array::BinarySearchI(int low, int high, int key)
     return -1;
 }
 
-int Array::BinarySearchR(int low, int high, int key)
+template <class T>
+int Array<T>::BinarySearchR(int low, int high, T key)
 {
     int middle = (low + high) / 2;
 
@@ -191,7 +203,8 @@ int Array::BinarySearchR(int low, int high, int key)
     return -1;
 }
 
-int Array::Get(int index)
+template <class T>
+T Array<T>::Get(int index)
 {
     if (index >= 0 && index < length)
         return A[index];
@@ -200,7 +213,8 @@ int Array::Get(int index)
     return -1;
 }
 
-void Array::Set(int index, int value)
+template <class T>
+void Array<T>::Set(int index, T value)
 {
     if (index >= 0 && index < length)
     {
@@ -211,7 +225,8 @@ void Array::Set(int index, int value)
         cout << "Invalid index\n";
 }
 
-int Array::Max()
+template <class T>
+T Array<T>::Max()
 {
     int max = INT_MIN, i;
     for (i = 0; i < length; i++)
@@ -220,7 +235,8 @@ int Array::Max()
     return max;
 }
 
-int Array::Min()
+template <class T>
+T Array<T>::Min()
 {
     int min = INT_MAX, i;
     for (i = 0; i < length; i++)
@@ -229,27 +245,32 @@ int Array::Min()
     return min;
 }
 
-int Array::SumI()
+template <class T>
+T Array<T>::SumI()
 {
-    int sum = 0, i;
+    T sum = 0;
+    int i;
     for (i = 0; i < length; i++)
         sum += A[i];
     return sum;
 }
 
-int Array::SumR(int n)
+template <class T>
+T Array<T>::SumR(int n)
 {
     if (n < 0)
         return 0;
     return SumR(n - 1) + A[n];
 }
 
-int Array::Avg()
+template <class T>
+T Array<T>::Avg()
 {
     return SumI() / length;
 }
 
-void Array::Reverse()
+template <class T>
+void Array<T>::Reverse()
 {
     int i;
     cout << "Reverse using copying array: ";
@@ -265,9 +286,11 @@ void Array::Reverse()
     Display();
 }
 
-void Array::LeftShiftRotate()
+template <class T>
+void Array<T>::LeftShiftRotate()
 {
-    int i, first;
+    int i;
+    T first;
     cout << "LeftShift: ";
     first = A[0];
     for (i = 0; i < length - 1; i++)
@@ -279,9 +302,11 @@ void Array::LeftShiftRotate()
     Display();
 }
 
-void Array::RightShiftRotate()
+template <class T>
+void Array<T>::RightShiftRotate()
 {
-    int i, last;
+    int i;
+    T last;
     cout << "RightShift: ";
     last = A[length - 1];
     for (i = length - 1; i > 0; i--)
@@ -293,18 +318,18 @@ void Array::RightShiftRotate()
     Display();
 }
 
-void Array::InsertInSorted(int value)
+template <class T>
+void Array<T>::InsertInSorted(T value)
 {
     int i;
     for (i = length - 1; i >= 0; i--)
-    {
         if (value > A[i])
             break;
-    }
     Insert(i + 1, value);
 }
 
-bool Array::CheckSorted()
+template <class T>
+bool Array<T>::CheckSorted()
 {
     int i;
     for (i = 0; i < length - 1; i++)
@@ -313,7 +338,8 @@ bool Array::CheckSorted()
     return true;
 }
 
-void Array::SeparateNegativePositive()
+template <class T>
+void Array<T>::SeparateNegativePositive()
 {
     int i = 0, j = length - 1;
     while (i < j)
@@ -328,15 +354,18 @@ void Array::SeparateNegativePositive()
     Display();
 }
 
-Array::~Array()
+template <class T>
+Array<T>::~Array()
 {
     delete[] A;
     cout << "Bye-Bye\n";
 }
 
-void Menu(Array *a)
+template <class T>
+void Menu(Array<T> *a)
 {
-    int option, index, value;
+    int option, index;
+    T value;
     cout << "ARRAY ADT\n";
     cout << "1. Append\n";
     cout << "2. Insert\n";
@@ -468,7 +497,7 @@ int main()
     int size;
     cout << "Enter array size: ";
     cin >> size;
-    Array a(size);
+    Array<float> a(size);
     Menu(&a);
     return 0;
 }
