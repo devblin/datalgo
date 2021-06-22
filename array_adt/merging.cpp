@@ -1,10 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+template <class T>
 class Array
 {
 public:
-    int *A, size, length = 0;
+    T *A;
+    int size, length = 0;
     Array(int newSize);
     void Display();
     Array *Merge(Array *B);
@@ -17,7 +19,8 @@ public:
     ~Array();
 };
 
-bool isInArray(Array *B, int key)
+template <class T>
+bool isInArray(Array<T> *B, T key)
 {
     int i, m = B->length;
     for (i = 0; i < m; i++)
@@ -26,13 +29,15 @@ bool isInArray(Array *B, int key)
     return false;
 }
 
-Array::Array(int newSize)
+template <class T>
+Array<T>::Array(int newSize)
 {
     size = newSize;
-    A = new int[newSize];
+    A = new T[newSize];
 }
 
-void Array::Display()
+template <class T>
+void Array<T>::Display()
 {
     int i;
     for (i = 0; i < length; i++)
@@ -40,7 +45,8 @@ void Array::Display()
     cout << "\n";
 }
 
-Array *Array::Merge(Array *B)
+template <class T>
+Array<T> *Array<T>::Merge(Array *B)
 {
     int m = length;
     int n = B->length;
@@ -77,7 +83,8 @@ Array *Array::Merge(Array *B)
     return C;
 }
 
-Array *Array::UnionUnsorted(Array *B)
+template <class T>
+Array<T> *Array<T>::UnionUnsorted(Array *B)
 {
     int m = length, n = B->length, i, j;
     Array *C;
@@ -100,7 +107,8 @@ Array *Array::UnionUnsorted(Array *B)
     return C;
 }
 
-Array *Array::UnionSorted(Array *B)
+template <class T>
+Array<T> *Array<T>::UnionSorted(Array *B)
 {
     int m = length, n = B->length, i = 0, j = 0, k = 0;
     Array *C;
@@ -132,7 +140,8 @@ Array *Array::UnionSorted(Array *B)
     return C;
 }
 
-Array *Array::IntersectionUnsorted(Array *B)
+template <class T>
+Array<T> *Array<T>::IntersectionUnsorted(Array *B)
 {
     Array *C;
     int i;
@@ -145,7 +154,8 @@ Array *Array::IntersectionUnsorted(Array *B)
     return C;
 }
 
-Array *Array::IntersectionSorted(Array *B)
+template <class T>
+Array<T> *Array<T>::IntersectionSorted(Array *B)
 {
     Array *C;
     int i = 0, j = 0, m = length, n = B->length;
@@ -165,7 +175,8 @@ Array *Array::IntersectionSorted(Array *B)
     return C;
 }
 
-Array *Array::DifferenceUnsorted(Array *B)
+template <class T>
+Array<T> *Array<T>::DifferenceUnsorted(Array *B)
 {
     Array *C;
     int i, m = length, n = B->length;
@@ -178,7 +189,8 @@ Array *Array::DifferenceUnsorted(Array *B)
     return C;
 }
 
-Array *Array::DifferenceSorted(Array *B)
+template <class T>
+Array<T> *Array<T>::DifferenceSorted(Array *B)
 {
     Array *C;
     int i = 0, j = 0, m = length, n = B->length;
@@ -201,13 +213,15 @@ Array *Array::DifferenceSorted(Array *B)
     return C;
 }
 
-Array::~Array()
+template <class T>
+Array<T>::~Array()
 {
     delete[] A;
     cout << "Bye-Bye\n";
 }
 
-void menu(Array *A, Array *B)
+template <class T>
+void menu(Array<T> *A, Array<T> *B)
 {
     int i, option;
     cout << "Enter elements for A: ";
@@ -278,7 +292,7 @@ void menu(Array *A, Array *B)
 int main()
 {
     int i;
-    Array A(4), B(5);
+    Array<float> A(4), B(5);
     menu(&A, &B);
     return 0;
 }
