@@ -23,12 +23,30 @@ void SingleMissingDiff(int a[], int n)
         }
 }
 
+void MultipleMissingDiff1(int a[], int n)
+{
+    int i, j, d;
+    cout << "1-Missing elements are: ";
+    for (i = 0; i < n - 1; i++)
+        if (a[i + 1] - a[i] > 1)
+        {
+            d = a[i + 1] - a[i];
+            for (j = 1; j < d; j++)
+                cout << a[i] + j << " ";
+        }
+    cout << "\n";
+}
+
+void MultipleMissingDiff2(int a[], int n)
+{
+}
+
 void menu()
 {
     int i, n, option;
     cout << "1. SingleMissingSum\n";
     cout << "2. SingleMissingDiff\n";
-    cout << "3. MultipleMissingDiff\n";
+    cout << "3. MultipleMissingDiff1\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
@@ -46,6 +64,10 @@ void menu()
         break;
     case 2:
         SingleMissingDiff(a, n);
+        break;
+    case 3:
+        MultipleMissingDiff1(a, n);
+        break;
     default:
         break;
     }
