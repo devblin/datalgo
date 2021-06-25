@@ -23,6 +23,7 @@ void SingleMissingDiff(int a[], int n)
         }
 }
 
+//for sorted array
 void MultipleMissingDiff1(int a[], int n)
 {
     int i, j, d;
@@ -37,8 +38,23 @@ void MultipleMissingDiff1(int a[], int n)
     cout << "\n";
 }
 
+// for both sorted and unsorted
 void MultipleMissingDiff2(int a[], int n)
 {
+    int i;
+    int max = *max_element(a, a + n);
+    int min = *min_element(a, a + n);
+    int h[max + 1] = {0};
+
+    for (i = 0; i < n; i++)
+        h[a[i]]++;
+
+    cout << "2-Missing elements are: ";
+    for (i = min; i <= max; i++)
+        if (h[i] == 0)
+            cout << i << " ";
+
+    cout << "\n";
 }
 
 void menu()
@@ -47,15 +63,19 @@ void menu()
     cout << "1. SingleMissingSum\n";
     cout << "2. SingleMissingDiff\n";
     cout << "3. MultipleMissingDiff1\n";
+    cout << "4. MultipleMissingDiff2\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
-    cout << "Enter number of elements: ";
-    cin >> n;
-    int a[n];
-    cout << "Enter sequence of natural no. excluding missing one: ";
-    for (i = 0; i < n; i++)
-        cin >> a[i];
+    if (option != 0)
+    {
+        cout << "Enter number of elements: ";
+        cin >> n;
+        int a[n];
+        cout << "Enter sequence of natural no. excluding missing one: ";
+        for (i = 0; i < n; i++)
+            cin >> a[i];
+    }
 
     switch (option)
     {
@@ -67,6 +87,9 @@ void menu()
         break;
     case 3:
         MultipleMissingDiff1(a, n);
+        break;
+    case 4:
+        MultipleMissingDiff2(a, n);
         break;
     default:
         break;
