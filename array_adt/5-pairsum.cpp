@@ -22,12 +22,39 @@ void PairSumUnsorted2(int a[], int n, int target)
     for (i = 0; i < n; i++)
         h[a[i]]++;
     for (i = 0; i < n; i++)
-    {
-        cout << "i = " << i << " | " << h[target - a[i]] << "\n";
-        if (h[target - a[i]] != 0)
+        if (h[target - a[i]] != 0 && target - a[i] >= 0)
             cout << "(" << a[i] << ", " << target - a[i] << ") ";
+    cout << "\n";
+}
+
+void PairSumSorted1(int a[], int n, int target)
+{
+    int i = 0, j = n - 1;
+    while (i <= j)
+    {
+        if (a[j] > target)
+            j--;
+        else if (a[i] + a[j] == target)
+            cout << "(" << a[i++] << ", " << a[j--] << ") ";
+        else if (a[i] + a[j] > target)
+            j--;
+        else if (a[i] + a[j] < target)
+            i++;
     }
     cout << "\n";
+}
+
+void MinMax(int a[], int n)
+{
+    int max = a[0], min = a[0], i;
+    for (i = 0; i < n; i++)
+    {
+        if (a[i] < min)
+            min = a[i];
+        if (a[i] > max)
+            max = a[i];
+    }
+    cout << "Max: " << max << " and Min: " << min << "\n";
 }
 
 void menu()
@@ -35,6 +62,7 @@ void menu()
     int i, option, n, target;
     cout << "1. PairSumUnsorted\n";
     cout << "2. PairSumSorted\n";
+    cout << "3. Min&Max\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
@@ -46,8 +74,11 @@ void menu()
         cout << "Enter elements: ";
         for (i = 0; i < n; i++)
             cin >> a[i];
-        cout << "Enter target sum: ";
-        cin >> target;
+        if (option != 3)
+        {
+            cout << "Enter target sum: ";
+            cin >> target;
+        }
     }
     switch (option)
     {
@@ -56,6 +87,10 @@ void menu()
         PairSumUnsorted2(a, n, target);
         break;
     case 2:
+        PairSumSorted1(a, n, target);
+        break;
+    case 3:
+        MinMax(a, n);
         break;
     default:
         break;
