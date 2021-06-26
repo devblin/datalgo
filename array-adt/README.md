@@ -17,3 +17,7 @@
 -   Min()
 -   Reverse()
 -   Rotate(times)
+-   Merging(A, B)
+-   MissingElement(A)
+-   Duplicates(A)
+-   PairOfSum(A, sum)
