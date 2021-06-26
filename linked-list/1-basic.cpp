@@ -19,16 +19,21 @@ public:
 
     void DisplayI();
     void DisplayR();
-    void DisplayRR(Node *head);
+    void DisplayRR();
     int NodeCount();
     int NodeCountR();
     int SumI();
     int SumR();
+    int MaxI();
+    int MaxR();
+    Node *LSearchI(int key);
+    Node *LSearchR(int key);
+    Node *LSearchMTH(int key);
+    Node *LSearchT(int key);
 };
 
 LinkedList::LinkedList(int a[], int n)
 {
-
     Node *last, *temp;
     int i = 0;
     first = new Node;
@@ -83,12 +88,15 @@ void LinkedList::DisplayR()
     }
 }
 
-void LinkedList::DisplayRR(Node *head)
+void LinkedList::DisplayRR()
 {
-    if (head != NULL)
+    int data;
+    if (first != NULL)
     {
-        DisplayRR(head->next);
-        cout << head->data << " ";
+        data = first->data;
+        first = first->next;
+        DisplayRR();
+        cout << data << " ";
     }
 }
 
@@ -127,15 +135,99 @@ int LinkedList::SumI()
     return sum;
 }
 
+int LinkedList::SumR()
+{
+    int data;
+    if (first == NULL)
+        return 0;
+
+    data = first->data;
+    first = first->next;
+    return SumR() + data;
+}
+
+int LinkedList::MaxI()
+{
+    int max = INT_MIN;
+    Node *temp = first;
+    while (temp)
+    {
+        if (temp->data > max)
+            max = temp->data;
+        temp = temp->next;
+    }
+    return max;
+}
+
+int LinkedList::MaxR()
+{
+    static int max = INT_MIN;
+    if (first == NULL)
+        return max;
+    if (first->data > max)
+        max = first->data;
+    first = first->next;
+    return MaxR();
+}
+
+Node *LinkedList::LSearchI(int key)
+{
+    Node *temp;
+    temp = first;
+    if (temp == NULL)
+        return NULL;
+    while (temp != NULL)
+    {
+        if (temp->data == key)
+            return temp;
+        temp = temp->next;
+    }
+    return NULL;
+}
+
+Node *LinkedList::LSearchR(int key)
+{
+    if (first == NULL)
+        return NULL;
+    if (first->data == key)
+        return first;
+    first = first->next;
+    return LSearchR(key);
+}
+
+Node *LinkedList::LSearchMTH(int key)
+{
+    Node *lead, *follower;
+    follower = NULL;
+    lead = first;
+    if (lead == NULL)
+        return NULL;
+    if (lead->data == key)
+        return lead;
+    while (lead->data != key)
+    {
+        follower = lead;
+        lead = lead->next;
+        if (lead == NULL)
+            return NULL;
+    }
+    follower->next = lead->next;
+    lead->next = first;
+    first = lead;
+    return first;
+}
+
 void menu(LinkedList *link)
 {
     Node *temp;
     temp = link->first;
-    int option, i, n;
+    int option, i, n, key;
     cout << "-----LINKED-LIST-----\n";
     cout << "1. Display\n";
     cout << "2. CountNode\n";
     cout << "3. Sum\n";
+    cout << "4. Max\n";
+    cout << "5. Search\n";
     cout << "Enter option: ";
     cin >> option;
     int a[n];
@@ -147,7 +239,7 @@ void menu(LinkedList *link)
         link->DisplayR();
         cout << "\nLinked list(reverse): ";
         link->first = temp;
-        link->DisplayRR(link->first);
+        link->DisplayRR();
         cout << "\n";
         link->first = temp;
         break;
@@ -157,7 +249,22 @@ void menu(LinkedList *link)
         link->first = temp;
         break;
     case 3:
-        cout << "Sum of nodes: " << link->SumI() << "\n";
+        cout << "Sum of nodes(iterative): " << link->SumI() << "\n";
+        cout << "Sum of nodes(recursive): " << link->SumR() << "\n";
+        link->first = temp;
+        break;
+    case 4:
+        cout << "Max (iterative): " << link->MaxI() << "\n";
+        cout << "Max (recursive): " << link->MaxR() << "\n";
+        link->first = temp;
+        break;
+    case 5:
+        cout << "Enter search value: ";
+        cin >> key;
+        cout << "LinearSearch(iterative): " << link->LSearchI(key) << "\n";
+        cout << "LinearSearch(recursive): " << link->LSearchR(key) << "\n";
+        link->first = temp;
+        cout << "LinearSearch(MTH): " << link->LSearchMTH(key) << "\n";
         break;
     default:
         break;
