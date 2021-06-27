@@ -217,6 +217,30 @@ Node *LinkedList::LSearchMTH(int key)
     return first;
 }
 
+Node *LinkedList::LSearchT(int key)
+{
+    Node *p, *q, *temp, *ans;
+    q = NULL;
+    p = first;
+    if (p == NULL)
+        return NULL;
+    if (p->data == key)
+        return p;
+    while (p->next->data != key)
+    {
+        q = p;
+        p = p->next;
+        if (p->next == NULL)
+            return NULL;
+    }
+    ans = p->next;
+    q->next = p->next;
+    temp = p->next->next;
+    q->next->next = p;
+    p->next = temp;
+    return ans;
+}
+
 void menu(LinkedList *link)
 {
     Node *temp;
@@ -265,6 +289,7 @@ void menu(LinkedList *link)
         cout << "LinearSearch(recursive): " << link->LSearchR(key) << "\n";
         link->first = temp;
         cout << "LinearSearch(MTH): " << link->LSearchMTH(key) << "\n";
+        cout << "LinearSearch(T): " << link->LSearchT(key) << "\n";
         break;
     default:
         break;
