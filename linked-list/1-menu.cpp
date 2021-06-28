@@ -16,7 +16,6 @@ public:
     LinkedList() { first = NULL; }
     LinkedList(int a[], int n);
     ~LinkedList();
-
     void DisplayI();
     void DisplayR();
     void DisplayRR();
@@ -52,7 +51,6 @@ LinkedList::LinkedList(int a[], int n)
     first = new Node;
     first->data = a[0];
     last = first;
-
     for (i = 1; i < n; i++)
     {
         temp = new Node;
@@ -185,8 +183,7 @@ int LinkedList::MaxR()
 
 Node *LinkedList::LSearchI(int key)
 {
-    Node *temp;
-    temp = first;
+    Node *temp = first;
     if (temp == NULL)
         return NULL;
     while (temp != NULL)
@@ -210,9 +207,7 @@ Node *LinkedList::LSearchR(int key)
 
 Node *LinkedList::LSearchMTH(int key)
 {
-    Node *lead, *follower;
-    follower = NULL;
-    lead = first;
+    Node *lead = first, *follower = NULL;
     if (lead == NULL)
         return NULL;
     if (lead->data == key)
@@ -232,9 +227,7 @@ Node *LinkedList::LSearchMTH(int key)
 
 Node *LinkedList::LSearchT(int key)
 {
-    Node *p, *q, *temp, *ans;
-    q = NULL;
-    p = first;
+    Node *p = first, *q = NULL, *temp, *ans;
     if (p == NULL)
         return NULL;
     if (p->data == key)
@@ -256,10 +249,9 @@ Node *LinkedList::LSearchT(int key)
 
 void LinkedList::Insert(int pos, int val)
 {
-    Node *newNode, *p;
+    Node *newNode, *p = first;
     newNode = new Node;
     newNode->data = val;
-    p = first;
     if (pos < 0 || pos > NodeCount())
         cout << "Invalid pos\n";
     else
@@ -305,10 +297,9 @@ void LinkedList::Append(int val)
 
 void LinkedList::InsertSorted(int val)
 {
-    Node *newNode, *p, *temp;
+    Node *newNode, *p = first, *temp;
     newNode = new Node;
     newNode->data = val;
-    p = first;
     if (!first)
         first = last = newNode;
     else if (first->data > val)
@@ -339,8 +330,7 @@ void LinkedList::Delete(int pos)
         cout << "Linked list empty\n";
         return;
     }
-    Node *p, *temp;
-    p = first;
+    Node *p = first, *temp;
     pos = pos - 1;
     if (pos == 0)
     {
@@ -365,9 +355,8 @@ void LinkedList::Delete(int pos)
 
 bool LinkedList::CheckSorted()
 {
-    Node *temp;
+    Node *temp = first;
     temp = new Node;
-    temp = first;
     while (temp->next != NULL)
     {
         if (temp->data > temp->next->data)
@@ -379,9 +368,8 @@ bool LinkedList::CheckSorted()
 
 void LinkedList::RemoveDuplicates()
 {
-    Node *p, *temp;
+    Node *p = first, *temp;
     p = new Node;
-    p = first;
     if (!first)
         return;
     else
@@ -403,11 +391,9 @@ void LinkedList::RemoveDuplicates()
 
 void LinkedList::ReverseElement()
 {
-    Node *p;
+    Node *p = first;
     p = new Node;
-    p = first;
     int a[NodeCount()], i = 0;
-
     while (p != NULL)
     {
         a[i++] = p->data;
@@ -424,10 +410,7 @@ void LinkedList::ReverseElement()
 
 void LinkedList::ReverseLinksI()
 {
-    Node *p, *q, *r;
-    r = NULL;
-    q = NULL;
-    p = first;
+    Node *p = first, *q = NULL, *r = NULL;
     while (p != NULL)
     {
         r = q;
@@ -463,8 +446,7 @@ void LinkedList::Concat(LinkedList *second)
 
 void LinkedList::Merging(LinkedList *second)
 {
-    Node *f, *s, *temp;
-    temp = first;
+    Node *f, *s, *temp = first;
     if (first->data < second->first->data)
     {
         f = s = first;
