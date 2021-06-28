@@ -368,7 +368,8 @@ bool LinkedList::CheckSorted()
 
 void LinkedList::RemoveDuplicates()
 {
-    Node *p = first, *temp;
+    Node *p, *temp;
+    p = first;
     p = new Node;
     if (!first)
         return;
@@ -400,7 +401,7 @@ void LinkedList::ReverseElement()
         p = p->next;
     }
     p = first;
-    while (i--)
+    while (--i)
     {
         p->data = a[i];
         p = p->next;
