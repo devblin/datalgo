@@ -46,7 +46,7 @@ public:
 
 LinkedList::LinkedList(int a[], int n)
 {
-    Node *temp;
+    Node *temp, *p;
     int i = 0;
     first = new Node;
     first->data = a[0];
@@ -58,6 +58,14 @@ LinkedList::LinkedList(int a[], int n)
         last->next = temp;
         last = temp;
     }
+    cout << "Linkedlist created...\n";
+    p = first;
+    DisplayI();
+    DisplayRR();
+    first = p;
+    cout << "\n";
+    DisplayR();
+    cout << "\n";
 }
 
 LinkedList::~LinkedList()
@@ -78,12 +86,13 @@ void LinkedList::DisplayI()
         cout << "Linked list empty";
     else
     {
-        cout << "Linked list: ";
         Node *temp = first;
         while (temp != NULL)
         {
-            cout << temp->data << " ";
+            cout << temp->data;
             temp = temp->next;
+            if (temp != NULL)
+                cout << " -> ";
         }
     }
     cout << "\n";
@@ -91,24 +100,35 @@ void LinkedList::DisplayI()
 
 void LinkedList::DisplayR()
 {
-    if (first != NULL)
+    static Node *temp = first;
+    if (temp != NULL)
     {
-        cout << first->data << " ";
-        first = first->next;
+        cout << temp->data;
+        temp = temp->next;
+        if (temp != NULL)
+            cout << " -> ";
         DisplayR();
     }
+    else
+        temp = first;
 }
 
 void LinkedList::DisplayRR()
 {
+    static Node *temp = first;
     int data;
-    if (first != NULL)
+    if (temp != NULL)
     {
-        data = first->data;
-        first = first->next;
+        data = temp->data;
+        temp = temp->next;
         DisplayRR();
-        cout << data << " ";
+        cout << data;
+        temp = temp->next;
+        if (temp != NULL)
+            cout << " -> ";
     }
+    else
+        temp = first;
 }
 
 int LinkedList::NodeCount()
@@ -536,11 +556,11 @@ void menu(LinkedList *link)
     switch (option)
     {
     case 1:
-        link->DisplayI();
         cout << "Linked list: ";
+        link->DisplayI();
         link->DisplayR();
-        cout << "\nLinked list(reverse): ";
         link->first = temp;
+        cout << "\nLinked list(reverse): ";
         link->DisplayRR();
         cout << "\n";
         link->first = temp;
@@ -613,9 +633,7 @@ void menu(LinkedList *link)
         for (i = 0; i < m; i++)
             cin >> b[i];
         newLink = new LinkedList(b, m);
-        cout << "Linkedlist created...\n";
         link->DisplayI();
-        newLink->DisplayI();
         if (option == 13)
         {
             cout << "Concating....\n";
@@ -653,7 +671,6 @@ int main()
     for (i = 0; i < n; i++)
         cin >> a[i];
     link = new LinkedList(a, n);
-    cout << "Linkedlist created...\n";
     menu(link);
     return 0;
 }
