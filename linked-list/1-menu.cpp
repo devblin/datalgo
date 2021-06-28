@@ -35,6 +35,14 @@ public:
     void InsertSorted(int val);
     void Delete(int pos);
     bool CheckSorted();
+    void RemoveDuplicates();
+    void ReverseElement();
+    void ReverseLinksI();
+    void ReverseLinksR(Node *q, Node *p);
+    void Concat(LinkedList *second);
+    void Merging(LinkedList *second);
+    void AddLoop(int pos);
+    bool CheckLoop();
 };
 
 LinkedList::LinkedList(int a[], int n)
@@ -369,11 +377,160 @@ bool LinkedList::CheckSorted()
     return true;
 }
 
+void LinkedList::RemoveDuplicates()
+{
+    Node *p, *temp;
+    p = new Node;
+    p = first;
+    if (!first)
+        return;
+    else
+    {
+        while (p->next != NULL)
+        {
+            if (p->data == p->next->data)
+            {
+                temp = p->next;
+                p->next = p->next->next;
+                delete temp;
+            }
+            else
+                p = p->next;
+        }
+    }
+    DisplayI();
+}
+
+void LinkedList::ReverseElement()
+{
+    Node *p;
+    p = new Node;
+    p = first;
+    int a[NodeCount()], i = 0;
+
+    while (p != NULL)
+    {
+        a[i++] = p->data;
+        p = p->next;
+    }
+    p = first;
+    while (i--)
+    {
+        p->data = a[i];
+        p = p->next;
+    }
+    DisplayI();
+}
+
+void LinkedList::ReverseLinksI()
+{
+    Node *p, *q, *r;
+    r = NULL;
+    q = NULL;
+    p = first;
+    while (p != NULL)
+    {
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
+    }
+    first = q;
+    DisplayI();
+}
+
+void LinkedList::ReverseLinksR(Node *q, Node *p)
+{
+    if (p != NULL)
+    {
+        ReverseLinksR(p, p->next);
+        p->next = q;
+    }
+    else
+        first = q;
+}
+
+void LinkedList::Concat(LinkedList *second)
+{
+    last->next = second->first;
+    last = second->last;
+    second->first = NULL;
+    second->last = NULL;
+    delete second->first;
+    delete second->last;
+    DisplayI();
+}
+
+void LinkedList::Merging(LinkedList *second)
+{
+    Node *f, *s, *temp;
+    temp = first;
+    if (first->data < second->first->data)
+    {
+        f = s = first;
+        first = first->next;
+    }
+    else
+    {
+        f = s = second->first;
+        second->first = second->first->next;
+    }
+    s->next = NULL;
+    while (first && second->first)
+    {
+        if (first->data < second->first->data)
+        {
+            s->next = first;
+            s = first;
+            first = first->next;
+        }
+        else
+        {
+            s->next = second->first;
+            s = second->first;
+            second->first = second->first->next;
+        }
+        s->next = NULL;
+    }
+    if (first)
+        s->next = first;
+    if (second->first)
+        s->next = second->first;
+    first = temp;
+    first = f;
+    DisplayI();
+}
+
+void LinkedList::AddLoop(int pos)
+{
+    Node *temp = first;
+    while (--pos)
+        temp = temp->next;
+    last->next = temp;
+    cout << "Added loop from: " << last->next->data << "\n";
+}
+
+bool LinkedList::CheckLoop()
+{
+    Node *f, *s;
+    s = f = first;
+    while (f && s)
+    {
+        s = s->next;
+        f = f->next;
+        if (f != NULL)
+            f = f->next;
+        if (f == s)
+            return true;
+    }
+    return false;
+}
+
 void menu(LinkedList *link)
 {
     Node *temp;
     temp = link->first;
-    int option, i, n, key, pos;
+    int option, i, n, m, key, pos;
     cout << "-----LINKED-LIST-----\n";
     cout << "1. Display\n";
     cout << "2. CountNode\n";
@@ -385,9 +542,14 @@ void menu(LinkedList *link)
     cout << "8. InsertSorted\n";
     cout << "9. Delete\n";
     cout << "10. CheckSorted\n";
+    cout << "11. RemoveDuplicates\n";
+    cout << "12. Reverse\n";
+    cout << "13. Concat\n";
+    cout << "14. Merge\n";
+    cout << "15. CheckLoop\n";
     cout << "Enter option: ";
     cin >> option;
-    int a[n];
+    int a[n], b[m];
     switch (option)
     {
     case 1:
@@ -446,6 +608,49 @@ void menu(LinkedList *link)
         break;
     case 10:
         cout << "Is sorted: " << link->CheckSorted() << "\n";
+        break;
+    case 11:
+        link->RemoveDuplicates();
+        break;
+    case 12:
+        cout << "Reverse elements: ";
+        link->ReverseElement();
+        cout << "Reverse links(iterative): ";
+        link->ReverseLinksI();
+        cout << "Reverse links(recursive): ";
+        link->ReverseLinksR(NULL, link->first);
+        link->DisplayI();
+        break;
+    case 13:
+    case 14:
+        LinkedList *newLink;
+        cout << "Size: ";
+        cin >> m;
+        cout << "Enter elements: ";
+        for (i = 0; i < m; i++)
+            cin >> b[i];
+        newLink = new LinkedList(b, m);
+        cout << "Linkedlist created...\n";
+        link->DisplayI();
+        newLink->DisplayI();
+        if (option == 13)
+        {
+            cout << "Concating....\n";
+            link->Concat(newLink);
+        }
+        else if (option == 14)
+        {
+            cout << "Merging....\n";
+            link->Merging(newLink);
+        }
+        break;
+    case 15:
+        cout << "Enter loop pos: ";
+        cin >> pos;
+        if (pos >= 1 && pos <= link->NodeCount())
+            link->AddLoop(pos);
+        cout << "Is loop: " << link->CheckLoop() << "\n";
+        link->last->next = NULL;
         break;
     default:
         break;
