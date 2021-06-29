@@ -42,6 +42,7 @@ public:
     void Merging(LinkedList *second);
     void AddLoop(int pos);
     bool CheckLoop();
+    void Middle();
 };
 
 LinkedList::LinkedList(int a[], int n)
@@ -529,6 +530,27 @@ bool LinkedList::CheckLoop()
     return false;
 }
 
+void LinkedList::Middle()
+{
+    int count = NodeCount();
+    count = ceil(count / 2);
+    Node *f, *s, *p;
+    s = f = p = first;
+    while (f->next)
+    {
+        s = s->next;
+        f = f->next;
+        if (f->next != NULL)
+            f = f->next;
+    }
+    cout << "Middle-1: " << s->data << "\n";
+
+    while (count--)
+        p = p->next;
+    cout << "Middle-2: " << p->data << "\n";
+    DisplayI();
+}
+
 void menu(LinkedList *link)
 {
     Node *temp;
@@ -550,6 +572,7 @@ void menu(LinkedList *link)
     cout << "13. Concat\n";
     cout << "14. Merge\n";
     cout << "15. CheckLoop\n";
+    cout << "16. Middle\n";
     cout << "Enter option: ";
     cin >> option;
     int a[n], b[m];
@@ -652,6 +675,9 @@ void menu(LinkedList *link)
             link->AddLoop(pos);
         cout << "Is loop: " << link->CheckLoop() << "\n";
         link->last->next = NULL;
+        break;
+    case 16:
+        link->Middle();
         break;
     default:
         break;

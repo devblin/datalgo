@@ -19,6 +19,9 @@ public:
     void DisplayR();
     void DisplayRR();
     void Insert(int pos, int value);
+    void Delete(int pos);
+    int Count();
+    void Reverse();
     ~DoublyLink();
 };
 
@@ -96,6 +99,61 @@ void DoublyLink::Insert(int pos, int value)
     Display();
 }
 
+void DoublyLink::Delete(int pos)
+{
+    Node *temp, *p = first;
+    if (pos == 1)
+    {
+        temp = first;
+        first = first->next;
+        first->prev = first->prev->prev;
+    }
+    else
+    {
+        pos = pos - 1;
+        while (--pos)
+            p = p->next;
+        temp = p->next;
+        p->next = p->next->next;
+        if (p->next)
+        {
+            p->next->prev = p;
+            last = p;
+        }
+    }
+    delete temp;
+    Display();
+}
+
+int DoublyLink::Count()
+{
+    int count = 0;
+    Node *temp = first;
+    while (temp)
+    {
+        count++;
+        temp = temp->next;
+    }
+    return count;
+}
+
+void DoublyLink::Reverse()
+{
+    Node *q, *p = first;
+    while (p)
+    {
+        q = p->next;
+        p->next = p->prev;
+        p->prev = q;
+        if (p->prev != NULL)
+            p = p->prev;
+        else
+            break;
+    }
+    first = p;
+    Display();
+}
+
 void menu(DoublyLink *link)
 {
     int option, i, n, pos, value;
@@ -104,6 +162,7 @@ void menu(DoublyLink *link)
     cout << "2. Insert\n";
     cout << "3. Delete\n";
     cout << "4. Count\n";
+    cout << "5. Reverse\n";
     cout << "0. Exit\n";
     cout << "Enter option: ";
     cin >> option;
@@ -116,6 +175,17 @@ void menu(DoublyLink *link)
         cout << "Position & value: ";
         cin >> pos >> value;
         link->Insert(pos, value);
+        break;
+    case 3:
+        cout << "Position: ";
+        cin >> pos;
+        link->Delete(pos);
+        break;
+    case 4:
+        cout << "No. of nodes: " << link->Count() << "\n";
+        break;
+    case 5:
+        link->Reverse();
         break;
     default:
         break;
