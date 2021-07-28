@@ -10,6 +10,7 @@ public:
     Diagonal(int size);
     void Set(int i, int j, int value);
     int Get(int i, int j);
+    void Display();
     ~Diagonal();
 };
 
@@ -36,6 +37,26 @@ int Diagonal::Get(int i, int j)
     return 0;
 }
 
+void Diagonal::Display()
+{
+    int i, j;
+    for (i = 0; i < limit; i++)
+    {
+        for (j = 0; j < limit; j++)
+        {
+            if (i == j)
+            {
+                cout << A[i - 1] << " ";
+            }
+            else
+            {
+                cout << 0 << " ";
+            }
+        }
+        cout << "\n";
+    }
+}
+
 Diagonal::~Diagonal()
 {
     delete[] A;
@@ -45,6 +66,8 @@ int main()
 {
     Diagonal *diag = new Diagonal(5);
     diag->Set(1, 1, 3);
-    cout << diag->Get(1, 1);
+    diag->Set(4, 4, 2);
+    cout << diag->Get(1, 1) << "\n";
+    diag->Display();
     return 0;
 }
