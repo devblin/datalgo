@@ -31,6 +31,7 @@ void Heap<T>::Insert(T num)
     T temp = n;
     int parent, child = length;
     A[length] = num;
+    parent = (child % 2 == 0) ? (child - 1) / 2
 }
 
 //Creating heap from arrays
