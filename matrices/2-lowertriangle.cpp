@@ -114,29 +114,22 @@ void LowerTriangleCol::Display()
 
 int main()
 {
-    int size = 9;
+    int size = 4;
     LowerTriangleRow *row = new LowerTriangleRow(size);
     int k = 1;
     for (int i = 0; i < size; i++)
-    {
         for (int j = 0; j < size; j++)
-        {
-            row->Set(i, j, k);
-            k++;
-        }
-    }
+            row->Set(i, j, k++);
+
     row->Display();
     cout << "\n";
+
     LowerTriangleCol *col = new LowerTriangleCol(size);
     k = 1;
     for (int i = 0; i < size; i++)
-    {
         for (int j = 0; j < size; j++)
-        {
-            col->Set(i, j, k);
-            k++;
-        }
-    }
+            col->Set(i, j, k++);
+
     col->Display();
     return 0;
 }
