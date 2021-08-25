@@ -3,17 +3,17 @@
 #include <map>
 using namespace std;
 
-void display(vector<int> *s)
+void display(vector<int> s)
 {
-    for (int i = 0; i < (*s).size(); i++)
+    for (int i = 0; i < s.size(); i++)
     {
-        cout << (*s)[i] << " ";
+        cout << s[i] << " ";
     }
     cout << "\n";
 }
 
 //dp
-vector<int> *dpm(int target, vector<int> nums, map<int, vector<int> *> &cache)
+vector<int> dpm(int target, vector<int> nums, map<int, vector<int>> &cache)
 {
     if (cache.find(target) != cache.end())
     {
@@ -21,49 +21,50 @@ vector<int> *dpm(int target, vector<int> nums, map<int, vector<int> *> &cache)
     }
     if (target == 0)
     {
-        return new vector<int>();
+        return {};
     }
     if (target < 0)
     {
-        return nullptr;
+        return {-1};
     }
-    vector<int> *final = nullptr;
+    vector<int> final = {-1};
     for (int i = 0; i < nums.size(); i++)
     {
         int rem = target - nums[i];
-        vector<int> *res = dpm(rem, nums, cache);
-        if (res)
+        vector<int> res = dpm(rem, nums, cache);
+        if (res.size() == 0 || res[0] != -1)
         {
-            res->push_back(nums[i]);
-            if (!final || res->size() < final->size())
+            res.push_back(nums[i]);
+            if (res.size() < final.size() || final[0] == -1)
             {
                 final = res;
             }
         }
     }
-    cache[target] = new vector<int>(*final);
+
+    cache[target] = final;
     return final;
 }
 
-vector<int> *solve(int target, vector<int> nums)
+vector<int> solve(int target, vector<int> nums)
 {
     if (target == 0)
     {
-        return new vector<int>;
+        return {};
     }
     if (target < 0)
     {
-        return nullptr;
+        return {-1};
     }
-    vector<int> *final = nullptr;
+    vector<int> final = {-1};
     for (int i = 0; i < nums.size(); i++)
     {
         int rem = target - nums[i];
-        vector<int> *res = solve(rem, nums);
-        if (res)
+        vector<int> res = solve(rem, nums);
+        if (res.size() == 0 || res[0] != -1)
         {
-            res->push_back(nums[i]);
-            if (!final || res->size() < final->size())
+            res.push_back(nums[i]);
+            if (res.size() < final.size() || final[0] == -1)
             {
                 final = res;
             }
@@ -75,25 +76,16 @@ vector<int> *solve(int target, vector<int> nums)
 int main()
 {
     vector<int> nums = {5, 10, 20};
-    map<int, vector<int> *> cache;
-    map<int, vector<int> *>::iterator it;
-    vector<int> *result;
-    int target = 40;
-
-    result = solve(target, nums);
-    if (result)
-        display(result);
+    map<int, vector<int>> cache;
+    map<int, vector<int>>::iterator it;
+    vector<int> result;
+    int target = 200;
 
     result = dpm(target, nums, cache);
-    if (result)
-        display(result);
+    display(result);
 
-    cout << "\n";
-    for (it = cache.begin(); it != cache.end(); it++)
-    {
-        cout << it->first << ":";
-        display(it->second);
-    }
+    result = solve(target, nums);
+    display(result);
 
     return 0;
 }

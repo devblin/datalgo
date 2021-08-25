@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <queue>
+#include <string>
+#include <iostream>
 using namespace std;
 
 typedef pair<string, int> Max;
@@ -15,15 +17,18 @@ int main()
 {
     //Max heap custom data type
     priority_queue<Max, vector<Max>, Compare> p;
-    p.push(make_pair("a", 1));
-    p.push(make_pair("c", 1));
-    p.push(make_pair("b", 3));
+    p.push({"a", 1});
+    p.push({"c", 1});
+    p.push({"b", 3});
+    // p.push(make_pair("a", 1));
+    // p.push(make_pair("c", 1));
+    // p.push(make_pair("b", 3));
 
     Max top = p.top();
     string s = top.first;
     int i = top.second - 1;
     p.pop();
-    p.push(make_pair(s, i));
+    p.push({s, i});
 
     while (!p.empty())
     {
