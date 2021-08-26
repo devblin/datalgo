@@ -25,7 +25,7 @@ void prism(vector<vector<int>> graph)
     vertices[u] = vertices[v] = 1;
     mst.insert({u, v});
 
-    // O(V^3)
+    // O(n^3)
     while (mst.size() != n - 2) // O(V-1)
     {
         min = INT_MAX;
@@ -47,6 +47,7 @@ void prism(vector<vector<int>> graph)
         mst.insert({u, v});
         vertices[v] = 1;
     }
+
     for (m = mst.begin(); m != mst.end(); m++)
     {
         cout << m->first << " - " << m->second << "\n";
