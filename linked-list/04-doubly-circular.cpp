@@ -1,12 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-class Node
-{
-public:
-    int data;
-    Node *prev = NULL, *next = NULL;
-};
+#include "node2.h"
 
 class DoublyCircularLink
 {
@@ -26,13 +18,11 @@ DoublyCircularLink::DoublyCircularLink(int a[], int n)
 {
     int i;
     Node *temp;
-    first = new Node;
-    first->data = a[0];
+    first = new Node(a[0]);
     last = first;
     for (i = 1; i < n; i++)
     {
-        temp = new Node;
-        temp->data = a[i];
+        temp = new Node(a[i]);
         last->next = temp;
         last = temp;
     }
@@ -66,8 +56,7 @@ void DoublyCircularLink::Display()
 void DoublyCircularLink::Insert(int pos, int value)
 {
     Node *t, *p = first;
-    t = new Node;
-    t->data = value;
+    t = new Node(value);
     if (pos == 0)
     {
         t->next = first;

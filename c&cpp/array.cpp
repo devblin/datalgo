@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 int main()
@@ -6,7 +6,6 @@ int main()
 	/*
 	ARRAY:
 	A[3]
-	
 	A[ ][ ][ ] <- array memory blocks
 	  0  1  2 <- index
 	*/
@@ -16,7 +15,6 @@ int main()
 	MAIN MEMORY
 	------------------
 	Heap Memory
-
 
 
 

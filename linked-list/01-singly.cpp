@@ -1,12 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-class Node
-{
-public:
-    int data;
-    Node *next = NULL;
-};
+#include "node1.h"
 
 class LinkedList
 {
@@ -49,13 +41,11 @@ LinkedList::LinkedList(int a[], int n)
 {
     Node *temp, *p;
     int i = 0;
-    first = new Node;
-    first->data = a[0];
+    first = new Node(a[0]);
     last = first;
     for (i = 1; i < n; i++)
     {
-        temp = new Node;
-        temp->data = a[i];
+        temp = new Node(a[i]);
         last->next = temp;
         last = temp;
     }
@@ -271,8 +261,7 @@ Node *LinkedList::LSearchT(int key)
 void LinkedList::Insert(int pos, int val)
 {
     Node *newNode, *p = first;
-    newNode = new Node;
-    newNode->data = val;
+    newNode = new Node(val);
     if (pos < 0 || pos > NodeCount())
         cout << "Invalid pos\n";
     else
@@ -304,8 +293,7 @@ void LinkedList::Insert(int pos, int val)
 void LinkedList::Append(int val)
 {
     Node *newNode;
-    newNode = new Node;
-    newNode->data = val;
+    newNode = new Node(val);
     if (first == NULL)
         first = last = newNode;
     else
@@ -319,8 +307,7 @@ void LinkedList::Append(int val)
 void LinkedList::InsertSorted(int val)
 {
     Node *newNode, *p = first, *temp;
-    newNode = new Node;
-    newNode->data = val;
+    newNode = new Node(val);
     if (!first)
         first = last = newNode;
     else if (first->data > val)

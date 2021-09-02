@@ -3,6 +3,10 @@
 #include <vector>
 using namespace std;
 
+/*
+Number of ways to travel a NxN grid from top-left corner to bottom-right corner
+*/
+
 // recursive
 int solve(int row, int col)
 {

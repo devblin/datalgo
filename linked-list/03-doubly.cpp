@@ -1,12 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-class Node
-{
-public:
-    int data;
-    Node *next = NULL, *prev = NULL;
-};
+#include "node2.h"
 
 class DoublyLink
 {

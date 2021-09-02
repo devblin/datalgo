@@ -3,6 +3,17 @@
 #include <map>
 using namespace std;
 
+/*
+For given array set of numbers with infinite amount, find if its
+possible to generate target sum
+
+Ex:- 
+nums = {5, 3, 4, 7}
+target = 7
+
+OUTPUT: true
+*/
+
 //dp memoization
 bool dpm(int target, vector<int> nums, map<int, bool> &cache)
 {
@@ -56,10 +67,10 @@ bool solve(int target, vector<int> nums)
 
 int main()
 {
+    int target = 8;
     vector<int> nums = {5, 3, 4, 7};
     map<int, bool> cache;
     cache[0] = true;
-    int target = 8;
     cout << solve(target, nums) << "\n";
     cout << dpm(target, nums, cache);
 

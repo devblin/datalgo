@@ -9,7 +9,7 @@ USE OF POINTERS:
 1. accessing heap memory, resources.
 2. parameter passing
 */
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 struct Rectangle

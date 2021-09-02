@@ -1,18 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-class Node
-{
-public:
-    int data;
-    Node *next = NULL;
-    Node(int newData);
-};
-
-Node::Node(int newData)
-{
-    data = newData;
-}
+#include "node1.h"
 
 Node *CreateLink(int a[], int n, Node *first)
 {

@@ -1,12 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-class Node
-{
-public:
-    int data;
-    Node *next;
-};
+#include "node1.h"
 
 class CircularLink
 {
@@ -32,14 +24,12 @@ CircularLink::CircularLink(int a[], int n)
 {
     int i;
     Node *temp;
-    first = new Node;
-    first->data = a[0];
+    first = new Node(a[0]);
     last = first;
     last->next = first;
     for (i = 1; i < n; i++)
     {
-        temp = new Node();
-        temp->data = a[i];
+        temp = new Node(a[i]);
         last->next = temp;
         last = temp;
         last->next = first;
@@ -100,8 +90,7 @@ void CircularLink::DisplayR()
 void CircularLink::Insert(int pos, int value)
 {
     Node *newNode, *temp = first;
-    newNode = new Node;
-    newNode->data = value;
+    newNode = new Node(value);
     if (pos == 0)
     {
         newNode->next = first;
