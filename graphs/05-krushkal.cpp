@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-#define I INT_MAX
-using namespace std;
+#include "display1.h"
 
 void setUnion(vector<int> &set, int u, int v)
 {
@@ -32,7 +30,6 @@ void krushkal(vector<vector<int>> &graph)
     vector<int> vertices(n, 0);
     vector<int> set(n, -1);
     multimap<int, int> mst;
-    multimap<int, int>::iterator m;
 
     for (i = 1; i < n - 1; i++)
     {
@@ -53,10 +50,7 @@ void krushkal(vector<vector<int>> &graph)
         setUnion(set, find(set, u), find(set, v));
     }
 
-    for (m = mst.begin(); m != mst.end(); m++)
-    {
-        cout << m->first << " - " << m->second << "\n";
-    }
+    display(graph, mst);
 }
 
 int main()

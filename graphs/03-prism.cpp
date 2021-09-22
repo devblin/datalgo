@@ -1,13 +1,10 @@
-#include <bits/stdc++.h>
-#define I INT_MAX
-using namespace std;
+#include "display1.h"
 
-void prism(vector<vector<int>> graph)
+void prism(vector<vector<int>> &graph)
 {
-    int min = INT_MAX, n = graph.size(), u, v, i, j, cost = 0;
+    int min = INT_MAX, n = graph.size(), u, v, i, j;
     vector<int> vertices(n, 0);
     multimap<int, int> mst;
-    multimap<int, int>::iterator m;
 
     //finding first minimum cost edge O(n^2)
     for (i = 1; i < n; i++)
@@ -48,12 +45,7 @@ void prism(vector<vector<int>> graph)
         vertices[v] = 1;
     }
 
-    for (m = mst.begin(); m != mst.end(); m++)
-    {
-        cout << m->first << " - " << m->second << "\n";
-        cost += graph[m->first][m->second];
-    }
-    cout << "Min cost: " << cost << "\n";
+    display(graph, mst);
 }
 
 int main()

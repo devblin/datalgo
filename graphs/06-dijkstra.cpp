@@ -1,15 +1,4 @@
-#include <bits/stdc++.h>
-#define I INT_MAX
-using namespace std;
-
-void display(vector<int> &dist)
-{
-    int n = dist.size(), i, j;
-    for (i = 1; i < n; i++)
-    {
-        cout << i << " => " << dist[i] << "\n";
-    }
-}
+#include "display2.h"
 
 void relax(int source, vector<vector<int>> &graph, vector<int> &dist)
 {
@@ -59,7 +48,7 @@ int main()
                                  {I, I, I, I, I, I, I}};
     vector<int> visited(graph.size(), 0);
     vector<int> dist(graph.size(), I);
-    int source = 3;
+    int source = 1;
     dist[source] = 0;
     dijkstra(source, graph, visited, dist);
     display(dist);
