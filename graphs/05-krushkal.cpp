@@ -26,7 +26,7 @@ int find(vector<int> set, int u)
     return x;
 }
 
-void krushkal(vector<vector<int>> graph)
+void krushkal(vector<vector<int>> &graph)
 {
     int u, v, n = graph.size(), min = INT_MAX, i, j;
     vector<int> vertices(n, 0);
