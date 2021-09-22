@@ -3,8 +3,8 @@
 /*
 Perform relaxation for (V-1) times on all edges.
 
-Bellmand-Ford algorithm can help us to detect cycle in graph,
-as after 'n' cycle all nodes in cyclic part would have -ve values.
+Bellmand-Ford algorithm fails if there is an 
+-ve weight cycle.
 */
 
 void bellmanFord(int &source, int &vertices, vector<vector<int>> &edges, vector<int> &dist)
