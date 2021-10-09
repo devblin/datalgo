@@ -2,6 +2,8 @@
 #define DISPLAY
 
 #include <iostream>
+#include <vector>
+#include <list>
 using namespace std;
 
 void display(int *a, int n)
